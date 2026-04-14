@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  
+  mysql-db:
+    image: mysql:latest
+    container_name: ratings_mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: user_ratings
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  
+  mongo-db:
+    image: mongo:latest
+    container_name: movies_mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+volumes:
+  mysql_data:
+  mongo_data:
+
+
+
+#dbc:mysql://127.0.0.1:3306/user_ratings?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTCspring.datasource.username=root
+#db details : 
+# YSQL_ROOT_PASSWORD 
